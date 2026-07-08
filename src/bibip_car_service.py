@@ -119,7 +119,6 @@ class CarService:
             
         with open(cars_file, 'r') as f:
             while True:
-                # Читаем фиксированную строку длиной 500 символов + 1 символ переноса строки (\n)
                 line = f.read(501)
                 if not line:
                     break
@@ -129,8 +128,7 @@ class CarService:
                     continue
                     
                 fields = clean_line.split(';')
-                
-                # Проверяем, совпадает ли статус в файле с запрашиваемым статусом
+
                 if fields[4] == status.value:
                     result.append(Car(
                         vin=fields[0],
@@ -265,7 +263,7 @@ class CarService:
 
         return Car(
             vin=car_fields[0],
-            model=int(car_fields[1]), # Вот тут изменили
+            model=int(car_fields[1]), 
             price=Decimal(car_fields[2]),
             date_start=car_fields[3], 
             status=CarStatus(car_fields[4])
@@ -407,7 +405,7 @@ class CarService:
                 stats_obj = ModelSaleStats(
                     car_model_name=model_fields[1],
                     brand=model_fields[2],
-                    sales_number=info["count"] # Вот тут изменили
+                    sales_number=info["count"]
                 )
                 result.append(stats_obj)
 
